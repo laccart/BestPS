@@ -10,6 +10,10 @@ import lxml.html as html
 import requests
 import json
 import urllib.parse as parse
+from urllib3 import disable_warnings
+from urllib3.exceptions import InsecureRequestWarning
+
+disable_warnings(InsecureRequestWarning)
 
 def getContent(domain):
 	try:
@@ -20,7 +24,7 @@ def getContent(domain):
 			'User-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36',
 			'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 			'Connection': 'close'
-			}
+			}, verify=False
 			)
 		return req
 	except Exception as _except:
